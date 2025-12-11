@@ -41,7 +41,7 @@ export default async function handler(req, res) {
   };
 
   // Добавляем Token
-  const token = generateToken(paymentData, PASSWORD);
+  const token = generateToken(paymentData, PASSWORD); 
   paymentData.Token = token;
 
   const response = await fetch("https://securepay.tinkoff.ru/v2/Init", {
