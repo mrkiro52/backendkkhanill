@@ -1,8 +1,0 @@
-export default function middleware(req) {
-  // Для preflight запросов просто возвращаем 200
-  if (req.method === "OPTIONS") {
-    return new Response(null, { status: 200 });
-  }
-  // Для всех остальных запросов пропускаем дальше
-  return new Response(null, { status: 204 });
-}

@@ -1,4 +1,0 @@
-export default function handler(req) {
-  // Ничего не блокируем, просто даем возможность другим функциям работать
-  return new Response(null, { status: 204 });
-}
