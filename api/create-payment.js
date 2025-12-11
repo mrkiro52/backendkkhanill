@@ -37,7 +37,7 @@ export default async function handler(req, res) {
     OrderId: orderId,
     Description: description || "Оплата заказа",
     SuccessURL: successUrl,
-    FailURL: failUrl,
+    FailURL: failUrl, 
   };
 
   // Добавляем Token
