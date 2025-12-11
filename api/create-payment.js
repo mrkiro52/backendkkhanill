@@ -20,14 +20,14 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const TERMINAL_KEY = process.env.TBANK_TERMINAL_KEY;
-  const PASSWORD = process.env.TBANK_PASSWORD;
+  const TERMINAL_KEY = process.env.TINKOFF_TERMINAL_KEY;
+  const PASSWORD = process.env.TINKOFF_PASSWORD;
 
   const { amount, orderId, description, successUrl, failUrl } = req.body;
 
   if (!TERMINAL_KEY || !PASSWORD) {
     return res.status(400).json({ 
-      error: "Missing required environment variables (TBANK_TERMINAL_KEY, TBANK_PASSWORD)" 
+      error: "Missing required environment variables (TINKOFF_TERMINAL_KEY, TINKOFF_PASSWORD)" 
     });
   }
 
