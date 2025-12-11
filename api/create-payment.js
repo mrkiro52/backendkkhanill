@@ -29,7 +29,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ 
       error: "Missing required environment variables (tbank_terminal_key, tbank_password)" 
     });
-  }
+  } 
 
   const paymentData = {
     TerminalKey: TERMINAL_KEY,
