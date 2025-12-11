@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/**/*.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    }
+  ],
+  "env": {
+    "TBANK_TERMINAL_KEY": "@tbank_terminal_key",
+    "TBANK_PASSWORD": "@tbank_password"
+  }
+}
