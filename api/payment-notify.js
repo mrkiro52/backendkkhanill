@@ -10,6 +10,18 @@ function verifyToken(params, password) {
 }
 
 export default async function handler(req, res) {
+  // ✅ CORS заголовки ДО всего остального
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, PATCH");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
+  res.setHeader("Access-Control-Max-Age", "86400");
+
+  // ✅ Обработка preflight запроса (ПЕРВАЯ проверка!)
+  if (req.method === "OPTIONS") {
+    console.log("✅ OPTIONS preflight запрос обработан");
+    return res.status(200).end();
+  }
+
   const timestamp = new Date().toISOString();
   console.log(`\n📨 [${timestamp}] НОВЫЙ ПЛАТЕЖНЫЙ КОЛБЭК`);
   console.log(`   Метод: ${req.method}`);
