@@ -10,15 +10,25 @@ function generateToken(params, password) {
 }
 
 export default async function handler(req, res) {
-  // ✅ CORS заголовки ДО всего остального
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  // ✅ CORS заголовки ДО всего остального - только для разрешенных origin
+  const allowedOrigins = [
+    "https://mrkiro52.github.io",
+    "http://localhost:3001",
+    "http://localhost:3000"
+  ];
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  }
+  
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, PATCH");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
   res.setHeader("Access-Control-Max-Age", "86400");
+  res.setHeader("Content-Type", "application/json");
 
   // ✅ Обработка preflight запроса (ПЕРВАЯ проверка!)
   if (req.method === "OPTIONS") {
-    console.log("✅ OPTIONS preflight запрос обработан");
+    console.log("✅ OPTIONS preflight запрос обработан от origin:", origin);
     return res.status(200).end();
   }
 
