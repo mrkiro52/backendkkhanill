@@ -1,18 +1,21 @@
 export default async function handler(req, res) {
   const timestamp = new Date().toISOString();
   
-  // Установка CORS заголовков
+  // УСТАНОВКА CORS ЗАГОЛОВКОВ ДО ВСЕГО ОСТАЛЬНОГО - ВАЖНО!
   res.setHeader("Access-Control-Allow-Origin", "https://mrkiro52.github.io");
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, PATCH");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
+  res.setHeader("Access-Control-Max-Age", "86400");
+  res.setHeader("Content-Type", "application/json");
 
   console.log(`\n📨 [${timestamp}] PRESALE SIGNUP REQUEST`);
   console.log(`   Метод: ${req.method}`);
   console.log(`   Origin: ${req.headers.origin}`);
+  console.log(`   ✅ CORS заголовки установлены`);
 
-  // Обработка preflight запроса
+  // ОБРАБОТКА PREFLIGHT ЗАПРОСА - ДОЛЖНА БЫТЬ ПЕРВОЙ!
   if (req.method === "OPTIONS") {
-    console.log("   ✅ Preflight (OPTIONS) запрос обработан");
+    console.log("   ✅ Preflight (OPTIONS) запрос - отправляем 200 OK");
     return res.status(200).end();
   }
 
